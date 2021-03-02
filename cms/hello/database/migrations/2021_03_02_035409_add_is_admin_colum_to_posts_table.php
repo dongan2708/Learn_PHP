@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePostTable extends Migration
+class AddIsAdminColumnToPostsTables extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreatePostTable extends Migration
      */
     public function up()
     {
-        Schema::create('post', function (Blueprint $table) {
-            $table->id();
-            $table->string('title')->default('not sụbject');
-            $table->text('body')->nullable();
-            $table->timestamps();
+        Schema::table('posts', function (Blueprint $table) {
+            //
+            $table->integer('is_admin')->unsigned();
         });
     }
 
@@ -28,6 +26,10 @@ class CreatePostTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('post');
+        Schema::table('posts', function (Blueprint $table) {
+            //
+            $table->dropColumn('is_admin');
+
+        });
     }
 }
