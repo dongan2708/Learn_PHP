@@ -1,5 +1,7 @@
+
 <?php
 
+//use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,39 +14,45 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-use App\Models\Task;
 use Illuminate\Http\Request;
+use App\Models\Task;
 //Route::get('/', function () {
 //    return view('welcome');
 //});
-Route::get('/', function () {
-    return view('task');
-});
-//show task dashboard
-//Route::get('/',function (){
-   // $tasks = Task::orderBy('created_at','desc')->get();
-    //return view('tasks',['tasks'=>$tasks]);
 
-//});
+//Show dashboard
+Route::get('/',function (){
+    $tasks = Task::orderby('created_at','desc')->get();
 
-Route::post('task',function(Request $request){
-    $validator = Validator::make($request-> all(),[
-        'name'=>'required|max:255',
+    return view('task',[
+        'tasks'=>$tasks
     ]);
-    if($validator->fails()){
+});
+
+//Add new task
+Route::post('/task',function (Request $request){
+
+    $validated = Validator::make($request->all(),[
+        'name' => 'required|max:255',
+    ]);
+//    $validated = $request->validate(
+//        'name' => 'required|unique:tasks|max:255'
+//    );
+
+    if ($validated->fails()){
         return redirect('/')
             ->withInput()
-            ->withErrors($validator);
+            ->withErrors($validated);
     }
-    $task = new Task;
-    $task->name = $request->name;
+    $task = new Task();
+    $task->name=$request->name;
     $task->save();
 
     return redirect('/');
-
-
 });
-Route::delete('task/{task}',function ($id){
+
+//delete
+Route::any('/task/{task}',function ($id){
     Task::findOrFail($id)->delete();
     return redirect('/');
 });
