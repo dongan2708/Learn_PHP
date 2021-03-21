@@ -1,9 +1,6 @@
 
 @extends('front.layout.master')
 
-@extends('front.layout.master')
-
-
 @section('title','Product')
 
 @section('body')
@@ -22,8 +19,6 @@
         </div>
     </div>
     <!-- Breadcrumb Section Begin -->
-
-
 
     <!-- Product Shop Section Begin -->
     <section class="product-shop spad page-details">
@@ -156,14 +151,14 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="product-pic-zoom">
-                                <img class="product-big-img" src="front/img/products/{{$product->productImages[0]->path}}" alt="">
+                                <img class="product-big-img" src="front/img/products/{{$product->productImage[0]->path}}" alt="">
                                 <div class="zoom-icon">
                                     <i class="fa fa-search-plus"></i>
                                 </div>
                             </div>
                             <div class="product-thumbs">
                                 <div class="product-thumbs-track ps-slider owl-carousel">
-                                    @foreach($product->productImages as $productImage)
+                                    @foreach($product->productImage as $productImage)
                                         <div class="pt active" data-imgbigurl="front/img/products/{{$productImage->path}}"><img
                                                 src="front/img/products/{{$productImage->path}}" alt=""></div>
                                     @endforeach
@@ -185,7 +180,7 @@
                                             <i class="fa fa-star-o"></i>
                                         @endif
                                     @endfor
-                                    <span>{{count($product->productComments)}}</span>
+                                    <span>{{count($product->productComment)}}</span>
                                 </div>
                                 <div class="pd-desc">
                                     <p>{{$product->content}}</p>
@@ -246,7 +241,7 @@
                                     <a data-toggle="tab" href="#tab-2" role="tab">SPECIFICATIONS</a>
                                 </li>
                                 <li>
-                                    <a data-toggle="tab" href="#tab-3" role="tab">Customer Reviews ({{count($product->productComments)}})</a>
+                                    <a data-toggle="tab" href="#tab-3" role="tab">Customer Reviews ({{count($product->productComment)}})</a>
                                 </li>
                             </ul>
                         </div>
@@ -271,7 +266,7 @@
                                                                 <i class="fa fa-star-o"></i>
                                                             @endif
                                                         @endfor
-                                                        <span>({{count($product->productComments)}})</span>
+                                                        <span>({{count($product->productComment)}})</span>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -330,9 +325,9 @@
                                 </div>
                                 <div class="tab-pane fade" id="tab-3" role="tabpanel">
                                     <div class="customer-review-option">
-                                        <h4>{{count($product->productComments)}}</h4>
+                                        <h4>{{count($product->productComment)}}</h4>
                                         <div class="comment-option">
-                                            @foreach($product->productComments as $productComment)
+                                            @foreach($product->productComment as $productComment)
                                                 <div class="co-item">
                                                     <div class="avatar-pic">
                                                         <img src="front/img/user/{{$productComment->user->avatar ?? 'default-avatar.jpg'}}" alt="">
@@ -414,7 +409,7 @@
                     <div class="col-lg-3 col-sm-6">
                         <div class="product-item">
                             <div class="pi-pic">
-                                <img src="front/img/products/{{$relatedProduct->productImages[0]->path}}" alt="">
+                                <img src="front/img/products/{{$relatedProduct->productImage[0]->path}}" alt="">
                                 @if($relatedProduct->discount != null)
                                     <div class="sale">Sale</div>
                                 @endif
