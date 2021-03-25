@@ -248,29 +248,31 @@
             }
         }
         $button.parent().find('input').val(newVal);
+        //update
 
-        //Update cart:
-        const rowId = $button.parent().find('input').data('rowid');
-        updateCart(rowId, newVal);
+        const rowId= $button.parent().find('input').data('rowid');
+        updateCart(rowId,newVal);
+
 
     });
 
     function updateCart(rowId,qty){
         $.ajax({
-            type: "GET",
-            url: "cart/update",
-            data: {rowId: rowId, qty: qty},
-            success: function (response){
-                // alert('Update successful !');
+            type:"GET",
+            url:"cart/update",
+            data:{rowId: rowId, qty: qty},
+            success:function(response){
+                alert('Update successful!');
                 console.log(response);
                 location.reload();
             },
-            error: function (error){
+            error:function(error){
                 alert('Update failed.')
                 console.log(error);
-            }
-        })
+            },
+        });
     }
+
 
     /*-------------------
         Product Filter - Index

@@ -3,14 +3,17 @@
 @section('title','Check Out')
 
 @section('body')
+
+
+
     <!-- Breadcrumb Section Begin -->
     <div class="breacrumb-section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text product-more">
-                        <a href="./index.html"><i class="fa fa-home"></i> Home</a>
-                        <a href="./shop.html">Shop</a>
+                        <a href="../../../../../../../Users/User/Downloads/eProject_Sem2_Template_Front/index.html"><i class="fa fa-home"></i> Home</a>
+                        <a href="../../../../../../../Users/User/Downloads/eProject_Sem2_Template_Front/shop.html">Shop</a>
                         <span>Check Out</span>
                     </div>
                 </div>
@@ -19,14 +22,17 @@
     </div>
     <!-- Breadcrumb Section Begin -->
 
+
+
+
     <!-- Shopping Cart Section Begin -->
     <section class="checkout-section spad">
         <div class="container">
             <form action="" method="post" class="checkout-form">
                 @csrf
-                <div class="row">
 
-                    @if(Cart::count() >0)
+                <div class="row">
+                    @if(Cart::count()>0)
                         <div class="col-lg-6">
                             <div class="checkout-content">
                                 <a href="#" class="content-btn">Click Here To Login</a>
@@ -43,32 +49,31 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <label for="cun-name">Company Name</label>
-                                    <input type="text" id="cun-name" name="company_name">
+                                    <input type="text" id="cun-name"  name="company_name">
                                 </div>
                                 <div class="col-lg-12">
                                     <label for="cun">Country<span>*</span></label>
-                                    <input type="text" id="cun" name="country">
+                                    <input type="text" id="cun"  name="country">
                                 </div>
                                 <div class="col-lg-12">
                                     <label for="street">Street Address<span>*</span></label>
-                                    <input type="text" id="street" name="street_address" class="street-first">
-
+                                    <input type="text" id="street" class="street-first"  name="street_address">
                                 </div>
                                 <div class="col-lg-12">
                                     <label for="zip">Postcode / ZIP (optional)</label>
-                                    <input type="text" id="zip" name="postcode_zip">
+                                    <input type="text" id="zip"  name="postcode_zip">
                                 </div>
                                 <div class="col-lg-12">
                                     <label for="town">Town / City<span>*</span></label>
-                                    <input type="text" id="town" name="town_city">
+                                    <input type="text" id="town"  name="town_city">
                                 </div>
                                 <div class="col-lg-6">
                                     <label for="email">Email Address<span>*</span></label>
-                                    <input type="text" id="email" name="email">
+                                    <input type="text" id="email"  name="email">
                                 </div>
                                 <div class="col-lg-6">
                                     <label for="phone">Phone<span>*</span></label>
-                                    <input type="text" id="phone" name="phone">
+                                    <input type="text" id="phone"  name="phone">
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="create-item">
@@ -90,21 +95,17 @@
                                 <div class="order-total">
                                     <ul class="order-table">
                                         <li>Product <span>Total</span></li>
-
                                         @foreach($carts as $cart)
-                                            <li class="fw-normal">
-                                                {{ $cart->name }} x {{ $cart->qty }}
-                                                <span>{{ $cart->price * $cart->qty }} </span></li>
+                                            <li class="fw-normal">{{$cart->name}} x {{$cart->qty}} <span>${{$cart->price * $cart->qty}}</span></li>
                                         @endforeach
-
-                                        <li class="fw-normal">Subtotal <span>${{  $subtotal }}</span></li>
-                                        <li class="total-price">Total <span>${{ $total }}</span></li>
+                                        <li class="fw-normal">Subtotal <span>${{$subtotal}}</span></li>
+                                        <li class="total-price">Total <span>${{$total}}</span></li>
                                     </ul>
                                     <div class="payment-check">
                                         <div class="pc-item">
                                             <label for="pc-check">
                                                 Pay later
-                                                <input type="radio" id="pc-check" name="payment_type" value="pay_later">
+                                                <input type="radio" id="pc-check" name="payment_type" value="pay_later" checked>
                                                 <span class="checkmark"></span>
                                             </label>
                                         </div>
@@ -124,7 +125,7 @@
                         </div>
                     @else
                         <div class="col-lg-12">
-                            <h4>Your cart is empty.</h4>
+                            <h4>Your cart is empty</h4>
                         </div>
                     @endif
                 </div>
@@ -132,4 +133,5 @@
         </div>
     </section>
     <!-- Shopping Cart Section End -->
+
 @endsection
